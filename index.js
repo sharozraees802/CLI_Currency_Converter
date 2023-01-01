@@ -5,42 +5,34 @@ const WelcomeScreen = () => {
     console.log(gradient('cyan', 'pink').multiline(figlet.textSync(`LastCode \n\ CLI Currency Converter !\n`), { interpolation: 'hsv' }) + '\n');
 };
 WelcomeScreen();
-
 let Convertion = {
-    "PKR":{
+    "PKR": {
         "USD": 0.0044,
         "GBP": 0.0037,
         "PKR": 1
     },
-    "GBP":{
+    "GBP": {
         "USD": 1.21,
         "PKR": 271.79,
         "GBP": 1,
     },
-    "USD":{
+    "USD": {
         "PKR": 225.50,
         "GBP": 0.83,
         "USD": 1,
     }
-}
-
-interface ansType {
-    from: "PKR" | "USD" | "GBP",
-    to: "PKR" | "USD" | "GBP",
-    amount: number
-}
-
-const answer: ansType = await inquirer.prompt([
+};
+const answer = await inquirer.prompt([
     {
         type: "list",
         name: "from",
-        choices: ["PKR","USD","GBP"],
+        choices: ["PKR", "USD", "GBP"],
         message: "Select Your Currency: "
     },
     {
         type: "list",
         name: "to",
-        choices: ["PKR","USD","GBP"],
+        choices: ["PKR", "USD", "GBP"],
         message: "Select Your Conversion Currency: "
     },
     {
@@ -48,15 +40,12 @@ const answer: ansType = await inquirer.prompt([
         name: "amount",
         message: "Enter Conversion Amount: "
     },
-    
-])
-
-const { from, to, amount} = answer
-
+]);
+const { from, to, amount } = answer;
 if (from && to && amount) {
     let result = Convertion[from][to] * amount;
-    console.log(`Your Conversion from ${from} to ${to} is ${result}`)
+    console.log(`Your Conversion from ${from} to ${to} is ${result}`);
 }
-else{
-    console.log("Invalid Input")
+else {
+    console.log("Invalid Input");
 }
